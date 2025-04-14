@@ -18,12 +18,13 @@ public class App {
             System.out.print("명령어) ");
             String cmd = Container.getScanner().nextLine().trim();
             Rq rq = new Rq(cmd);
+
             System.out.println(rq.getActionCode());
 
             switch (rq.getActionCode()){
 
                 case "delete" :
-                    wiseSayingController.remove();
+                    wiseSayingController.remove(rq);
                     break;
                 case "add" :
                     wiseSayingController.add();
@@ -42,18 +43,6 @@ public class App {
 
             }
 
-//            if (rq.getActionCode().equals("delete")) {
-//                wiseSayingController.remove();
-//            } else if (cmd.equals("add")) {
-//                wiseSayingController.add();
-//            } else if (cmd.equals("list")) {
-//                wiseSayingController.list();
-//            } else if (cmd.equals("exit")) {
-//                systemController.exit();
-//                break;
-//            } else {
-//                System.out.println("존재하지 않는 명령어입니다.");
-//            }
         }
     }
 }

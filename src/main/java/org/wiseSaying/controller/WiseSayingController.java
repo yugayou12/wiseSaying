@@ -1,6 +1,7 @@
 package org.wiseSaying.controller;
 
 import org.project.Container;
+import org.project.Rq;
 import org.wiseSaying.entity.WiseSaying;
 
 import java.util.ArrayList;
@@ -41,7 +42,17 @@ public class WiseSayingController {
         }
     }
 
-    public void remove(){
+    public void remove(Rq rq){
+        // 여기서 delete?id=1 의 1번을 찾아 삭제
+
+        int id = rq.getIntParams("id", -1);
+        if (id == -1) {
+            System.out.println("id(정수)를 제대로 입력해 주세요.");
+        }
+
+
+        System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+
 
     }
 }

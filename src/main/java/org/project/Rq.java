@@ -8,13 +8,13 @@ public class Rq {
     private String actionCode;
     private Map<String, String> params;
 
-    public Rq(String cmd){
+    public Rq(String cmd) {
         // parsing start
         String[] cmdBits = cmd.split("\\?", 2);
         actionCode = cmdBits[0];
         params = new HashMap<>();
 
-        if(cmdBits.length == 1){
+        if (cmdBits.length == 1) {
             return;
         }
 
@@ -26,11 +26,20 @@ public class Rq {
         // parsing end
     }
 
-    public String getActionCode(){
+    public String getActionCode() {
         return actionCode;
     }
-    public String getParams(String key){
+
+    public String getParams(String key) {
         return params.get(key);
     }
 
+    public int getIntParams(String key, int defaultValue) {
+        try {
+            return Integer.parseInt(getParams(key));
+        } catch (NumberFormatException e) {
+            System.out.println("id(정수)를 제대로 입력해 주세요.");
+        }
+        return defaultValue;
+    }
 }
