@@ -20,6 +20,10 @@ public class Rq {
 
         String[] paramBits = cmdBits[1].split("=", 2);
 
+        if(paramBits.length == 1){
+            return;
+        }
+
         String key = paramBits[0];
         String value = paramBits[1];
         params.put(key, value);
@@ -37,8 +41,8 @@ public class Rq {
     public int getIntParams(String key, int defaultValue) {
         try {
             return Integer.parseInt(getParams(key));
-        } catch (NumberFormatException e) {
-            System.out.println("id(정수)를 제대로 입력해 주세요.");
+        }
+        catch (NumberFormatException e) {
         }
         return defaultValue;
     }

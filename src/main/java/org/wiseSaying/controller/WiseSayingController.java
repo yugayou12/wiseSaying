@@ -38,21 +38,34 @@ public class WiseSayingController {
                 WiseSaying temp = wiseSayingList.get(i);
                 System.out.printf("%d        %s      %s\n", temp.getId(), temp.getPerson(), temp.getContent());
             }
-
         }
     }
 
     public void remove(Rq rq){
-        // 여기서 delete?id=1 의 1번을 찾아 삭제
 
         int id = rq.getIntParams("id", -1);
         if (id == -1) {
             System.out.println("id(정수)를 제대로 입력해 주세요.");
         }
 
+        WiseSaying removeTargetwiseSaying = findById(id);
+        if(removeTargetwiseSaying != null){
+            wiseSayingList.remove(removeTargetwiseSaying);
+            System.out.printf("%d번 명언이 삭제되었습니다\n", id);
+        }
+        else{
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+        }
 
-        System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
+    }
 
+    public WiseSaying findById(int id){
 
+        for(WiseSaying wiseSaying : wiseSayingList){
+            if(id == wiseSaying.getId()){
+                return wiseSaying;
+            }
+        }
+        return null;
     }
 }
